@@ -3,11 +3,14 @@ import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../interfaces/template-config.metada";
 import {CommonModule} from "@angular/common";
+import {ROUTES} from "./vertical-menu-routes.config";
+import {RouteInfo} from "./vertical-menu.metada";
+import {RouterLink} from "@angular/router";
 
 @Component({
   selector: 'app-vertical-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './vertical-menu.component.html',
   styleUrl: './vertical-menu.component.scss'
 })
@@ -15,6 +18,7 @@ export class VerticalMenuComponent implements OnInit, OnDestroy {
   private _configSub!: Subscription;
   public config!: ITemplateConfig;
   bgImage: string = '';
+  public menuItems: RouteInfo[] = [];
 
   constructor(
     private configService: ConfigService,
@@ -24,6 +28,8 @@ export class VerticalMenuComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    this.menuItems = ROUTES;
+
     this._configSub = this.configService.templateConf$.subscribe((templateConf) => {
       if (templateConf) {
         this.config = templateConf;
