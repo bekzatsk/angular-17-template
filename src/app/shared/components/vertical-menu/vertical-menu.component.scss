@@ -16,6 +16,38 @@
   }
 }
 
-.navigation {
+.menu {
+  z-index: 2;
+  position: relative;
+}
 
+.navigation {
+  margin: 0;
+  padding: 0;
+
+  li {
+    position: relative;
+    display: block;
+    list-style: none;
+    -webkit-transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+    transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+
+    a {
+      display: block;
+      line-height: 2rem;
+      padding: 10px 30px 10px 14px;
+      margin: 5px 0;
+      background-color: transparent;
+      color: #fff;
+      transition: all .3s linear;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      text-decoration: none;
+    }
+
+    &:hover {
+      background-color: rgba(255, 255, 255, 0.2);
+    }
+  }
 }
