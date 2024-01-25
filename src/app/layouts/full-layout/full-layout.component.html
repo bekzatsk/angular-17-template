@@ -1,0 +1,20 @@
+<div class="wrapper">
+  <div class="app-sidebar"
+       [ngClass]="{
+         'small-sidebar': config.layout.sidebar.size == 'sm',
+         'medium-sidebar': config.layout.sidebar.size == 'md',
+         'large-sidebar': config.layout.sidebar.size == 'lg'
+       }"
+  >
+    <app-vertical-menu></app-vertical-menu>
+  </div>
+  <div class="main-panel">
+    <div class="main-content">
+      <div class="content-wrapper">
+        <p>full-layout works!</p>
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </div>
+</div>
+
