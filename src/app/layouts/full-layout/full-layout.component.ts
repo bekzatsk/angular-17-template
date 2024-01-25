@@ -5,6 +5,7 @@ import {CommonModule} from "@angular/common";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../shared/interfaces/template-config.metada";
 import {ConfigService} from "../../shared/services/config.service";
+import {IconsModule} from "../../shared/modules/icons.module";
 
 @Component({
   selector: 'app-full-layout',
@@ -12,7 +13,8 @@ import {ConfigService} from "../../shared/services/config.service";
   imports: [
     RouterOutlet,
     CommonModule,
-    VerticalMenuComponent
+    VerticalMenuComponent,
+    IconsModule
   ],
   templateUrl: './full-layout.component.html',
   styleUrl: './full-layout.component.scss'

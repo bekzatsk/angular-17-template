@@ -8,10 +8,33 @@
 <div class="menu">
   <ul class="navigation">
     @for (item of menuItems; track item) {
-      <li>
-        <a [routerLink]="item.path">
-          {{ item.title }}
+      <li [ngClass]="{'submenu-active': item.opened}" (click)="openSubMenu(item)">
+        <a [routerLink]="item.path ? item.path : null">
+          <div class="icon-menu">
+            <i-feather [name]="item.icon"></i-feather>
+          </div>
+
+          <span class="menu-title">{{ item.title }}</span>
+
+          @if (item.submenu.length) {
+            <div class="icon-right" [ngClass]="{'submenu-open': item.opened}">
+              <i-feather [name]="'chevron-right'"></i-feather>
+            </div>
+          }
         </a>
+        <ul class="menu-children" [ngClass]="{'d-none': !item.opened}">
+          @for (subItem of item.submenu; track subItem) {
+            <li>
+              <a [routerLink]="subItem.path">
+                <div class="icon-menu">
+                  <i-feather [name]="subItem.icon"></i-feather>
+                </div>
+
+                <span class="menu-title">{{ subItem.title }}</span>
+              </a>
+            </li>
+          }
+        </ul>
       </li>
     }
   </ul>

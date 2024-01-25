@@ -6,11 +6,16 @@ import {CommonModule} from "@angular/common";
 import {ROUTES} from "./vertical-menu-routes.config";
 import {RouteInfo} from "./vertical-menu.metada";
 import {RouterLink} from "@angular/router";
+import {IconsModule} from "../../modules/icons.module";
 
 @Component({
   selector: 'app-vertical-menu',
   standalone: true,
-  imports: [CommonModule, RouterLink],
+  imports: [
+    CommonModule,
+    RouterLink,
+    IconsModule,
+  ],
   templateUrl: './vertical-menu.component.html',
   styleUrl: './vertical-menu.component.scss'
 })
@@ -29,6 +34,9 @@ export class VerticalMenuComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.menuItems = ROUTES;
+    this.menuItems.forEach(item => {
+      item.opened = false;
+    })
 
     this._configSub = this.configService.templateConf$.subscribe((templateConf) => {
       if (templateConf) {
@@ -45,6 +53,12 @@ export class VerticalMenuComponent implements OnInit, OnDestroy {
   ngOnDestroy() {
     if (this._configSub) {
       this._configSub.unsubscribe();
+    }
+  }
+
+  openSubMenu(item: RouteInfo) {
+    if (item.submenu.length) {
+      item.opened = !item.opened;
     }
   }
 }
