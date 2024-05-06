@@ -25,6 +25,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/sass/core.scss",
               "src/assets/sass/app.scss",
               "src/styles.scss"
             ],
@@ -85,6 +86,7 @@
               "src/assets"
             ],
             "styles": [
+              "src/assets/sass/core.scss",
               "src/assets/sass/app.scss",
               "src/styles.css"
             ],

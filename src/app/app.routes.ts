@@ -7,7 +7,7 @@ import {CONTENT_LAYOUT_ROUTES} from "./shared/routes/content-layout.routes";
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: '/contents/test',
+    redirectTo: '/contents/login',
     pathMatch: 'full'
   },
   {
