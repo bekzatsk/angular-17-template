@@ -6,6 +6,7 @@ import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../shared/interfaces/template-config.metada";
 import {ConfigService} from "../../shared/services/config.service";
 import {IconsModule} from "../../shared/modules/icons.module";
+import {LayoutService} from "../../shared/services/layout.service";
 
 @Component({
   selector: 'app-full-layout',
@@ -22,9 +23,11 @@ import {IconsModule} from "../../shared/modules/icons.module";
 export class FullLayoutComponent implements OnInit, OnDestroy  {
   private _configSub!: Subscription;
   public config!: ITemplateConfig;
+  isMenuCollapsedOnHover = false;
 
   constructor(
     private configService: ConfigService,
+    private layoutService: LayoutService,
     private cdr: ChangeDetectorRef,
   ) {
 
@@ -34,10 +37,10 @@ export class FullLayoutComponent implements OnInit, OnDestroy  {
     this._configSub = this.configService.templateConf$.subscribe((templateConf) => {
       if (templateConf) {
         this.config = templateConf;
-        console.log(this.config)
+        this.sidebarMouseleave();
       }
       //load layout
-      // this.loadLayout();
+      this.loadLayout();
       this.cdr.markForCheck();
     });
   }
@@ -45,6 +48,28 @@ export class FullLayoutComponent implements OnInit, OnDestroy  {
   ngOnDestroy() {
     if (this._configSub) {
       this._configSub.unsubscribe();
+    }
+  }
+
+  sidebarMouseenter() {
+    if (this.config.layout.sidebar.collapsed) {
+      this.isMenuCollapsedOnHover = false;
+      this.layoutService.overlaySidebartoggle(this.isMenuCollapsedOnHover);
+    }
+  }
+
+  sidebarMouseleave() {
+    if (this.config.layout.sidebar.collapsed) {
+      this.isMenuCollapsedOnHover = true;
+      this.layoutService.overlaySidebartoggle(this.isMenuCollapsedOnHover);
+    }
+  }
+
+  loadLayout() {
+    if (this.config.layout.menuPosition === "Side") {
+      this.isMenuCollapsedOnHover = this.config.layout.sidebar.collapsed;
+      this.layoutService.overlaySidebartoggle(this.isMenuCollapsedOnHover);
+      // this.toggleSidebar();
     }
   }
 

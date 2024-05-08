@@ -16,9 +16,58 @@
   }
 }
 
+.sidebar-header {
+  z-index: 2;
+  position: relative;
+  padding: .5rem .95rem;
+
+  .logo {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .logo-text {
+      text-transform: uppercase;
+      padding: 5px 0;
+      display: block;
+      font-size: 1.6rem;
+      letter-spacing: 2px;
+      color: #fff;
+      text-align: left;
+      font-weight: 400;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+    .logo-img {
+      width: 30px;
+      display: inline-block;
+      max-height: 30px;
+      margin-right: 15px;
+    }
+
+    a.nav-toggle {
+      color: #fff;
+      text-align: center;
+      width: 20px;
+      height: 20px;
+      line-height: 20px;
+      transition: all .2s cubic-bezier(0,0,.2,1);
+
+      i-feather {
+        width: 1rem;
+      }
+    }
+  }
+}
+
 .menu {
   z-index: 2;
   position: relative;
+  height: calc(var(--vh, 1vh)*100 - 62px)!important;
 }
 
 .navigation {
@@ -42,16 +91,22 @@
       text-overflow: ellipsis;
       text-decoration: none;
       cursor: pointer;
-      -webkit-transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
-      transition: all 0.2s cubic-bezier(0, 0, 0.2, 1);
+      -webkit-transition: all .3s cubic-bezier(0, 0, 0.2, 1);
+      transition: all .3s cubic-bezier(0, 0, 0.2, 1);
 
-      &:hover {
+      &:hover, &.submenu-active {
         background-color: rgba(255, 255, 255, 0.2);
+      }
+
+      .icon-square {
+        display: flex;
+        width: 30px;
+        height: 30px;
+        margin-right: 10px;
       }
 
       .icon-menu {
         float: left;
-        margin-right: 10px;
         width: 30px;
         opacity: .8;
         display: flex;
@@ -70,8 +125,15 @@
         letter-spacing: .6px;
         opacity: 1;
         height: auto;
-        transition: all .3s cubic-bezier(0,0,.2,1);
+        transition: all .2s cubic-bezier(0,0,.2,1);
+        -webkit-transition: all .2s cubic-bezier(0,0,.2,1);
         width: 100%;
+      }
+
+      &.rm-text  {
+        .menu-title, .icon-right {
+          opacity: 0;
+        }
       }
 
       .icon-right {
@@ -97,6 +159,8 @@
 .menu-children {
   margin: 0;
   padding: 0;
+  transition: all .2s linear;
+  -webkit-transition: all .2s linear;
 
   li {
     position: relative;

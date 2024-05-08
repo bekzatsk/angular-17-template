@@ -3,8 +3,11 @@
        [ngClass]="{
          'small-sidebar': config.layout.sidebar.size == 'sm',
          'medium-sidebar': config.layout.sidebar.size == 'md',
-         'large-sidebar': config.layout.sidebar.size == 'lg'
+         'large-sidebar': config.layout.sidebar.size == 'lg',
+         'mini-sidebar': config.layout.sidebar.collapsed && isMenuCollapsedOnHover
        }"
+       (mouseenter)="sidebarMouseenter()"
+       (mouseleave)="sidebarMouseleave()"
   >
     <app-vertical-menu></app-vertical-menu>
   </div>

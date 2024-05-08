@@ -35,6 +35,10 @@ html, body {
     width: 280px;
   }
 
+  &.mini-sidebar {
+    width: 60px;
+  }
+
   &:before {
     display: block;
     content: "";

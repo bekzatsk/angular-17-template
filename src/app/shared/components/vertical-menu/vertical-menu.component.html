@@ -1,41 +1,65 @@
-<div class="sidebar-background" [ngStyle]="{'background-image': 'url(' + bgImage + ')'}">
-
-</div>
+<div class="sidebar-background" [ngStyle]="{'background-image': 'url(' + bgImage + ')'}"></div>
 <div class="sidebar-background sidebar-color">
 
 </div>
 
+<div class="sidebar-header">
+  <div class="logo">
+    <a href="" class="logo-text float-start">
+      <div class="logo-img">
+        <img [src]="logoUrl" alt="INNLAB LOGO" class="">
+      </div>
+      <span class="text align-middle" [ngClass]="{'opacity-0': collapseSidebar}">OZEN</span>
+
+    </a>
+    <a class="nav-toggle d-none d-lg-none d-xl-block" id="sidebarToggle" href="javascript:;"
+       [ngClass]="{'opacity-0': collapseSidebar}"
+       (click)="toggleSidebar()">
+      @if (config && config.layout.sidebar.collapsed) {
+        <i-feather [name]="'toggle-right'"></i-feather>
+      } @else {
+        <i-feather [name]="'toggle-left'"></i-feather>
+      }
+    </a>
+  </div>
+</div>
+
 <div class="menu">
-  <ul class="navigation">
-    @for (item of menuItems; track item) {
-      <li [ngClass]="{'submenu-active': item.opened}" (click)="openSubMenu(item)">
-        <a [routerLink]="item.path ? item.path : null">
-          <div class="icon-menu">
-            <i-feather [name]="item.icon"></i-feather>
-          </div>
-
-          <span class="menu-title">{{ item.title }}</span>
-
-          @if (item.submenu.length) {
-            <div class="icon-right" [ngClass]="{'submenu-open': item.opened}">
-              <i-feather [name]="'chevron-right'"></i-feather>
+  <ng-scrollbar [visibility]="'hover'">
+    <ul class="navigation">
+      @for (item of menuItems; track item) {
+        <li [ngClass]="{'submenu-active': item.opened}" (click)="openSubMenu(item)">
+          <a [routerLink]="item.path ? item.path : null"  [ngClass]="{'submenu-active': item.opened, 'rm-text': collapseSidebar}">
+            <div class="icon-square">
+              <div class="icon-menu">
+                <i-feather [name]="item.icon"></i-feather>
+              </div>
             </div>
-          }
-        </a>
-        <ul class="menu-children" [ngClass]="{'d-none': !item.opened}">
-          @for (subItem of item.submenu; track subItem) {
-            <li>
-              <a [routerLink]="subItem.path">
-                <div class="icon-menu">
-                  <i-feather [name]="subItem.icon"></i-feather>
-                </div>
 
-                <span class="menu-title">{{ subItem.title }}</span>
-              </a>
-            </li>
-          }
-        </ul>
-      </li>
-    }
-  </ul>
+
+            <span class="menu-title">{{ item.title }}</span>
+
+            @if (item.submenu.length) {
+              <div class="icon-right" [ngClass]="{'submenu-open': item.opened}">
+                <i-feather [name]="'chevron-right'"></i-feather>
+              </div>
+            }
+          </a>
+          <ul class="menu-children" [ngClass]="{'d-none': !item.opened || collapseSidebar}">
+            @for (subItem of item.submenu; track subItem) {
+              <li>
+                <a [routerLink]="subItem.path">
+                  <div class="icon-menu">
+                    <i-feather [name]="subItem.icon"></i-feather>
+                  </div>
+
+                  <span class="menu-title">{{ subItem.title }}</span>
+                </a>
+              </li>
+            }
+          </ul>
+        </li>
+      }
+    </ul>
+  </ng-scrollbar>
 </div>
