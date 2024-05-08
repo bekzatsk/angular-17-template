@@ -2,6 +2,8 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/mixins";
 
+@import "bootstrap-extended/hover";
+
 // Load variable overrides
 @import "core/variables/variables";
 @import "bootstrap/scss/variables";
