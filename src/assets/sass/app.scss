@@ -7,53 +7,7 @@ html, body {
   margin: 0;
 }
 
-.app-sidebar {
-  transform: translate3d(0, 0, 0);
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: 0;
-  z-index: 998;
-  height: 100vh;
-  -webkit-transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
-  transition: all 0.3s cubic-bezier(0, 0, 0.2, 1);
-  box-shadow: 6px 0 20px 0 rgba(25,42,70,.35);
-  white-space: nowrap;
-  visibility: visible;
-  font-size: 1rem;
-  font-family: Montserrat, Segoe UI, Roboto, Helvetica Neue, Arial, sans-serif;
 
-  &.small-sidebar {
-    width: 220px;
-  }
-
-  &.medium-sidebar {
-    width: 250px;
-  }
-
-  &.large-sidebar {
-    width: 280px;
-  }
-
-  &.mini-sidebar {
-    width: 60px;
-  }
-
-  &:before {
-    display: block;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-    z-index: 2;
-  }
-}
-
-.main-panel {
-  margin-left: 250px;
-}
 
 i-feather {
   display: flex !important;

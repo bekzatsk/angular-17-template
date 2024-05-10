@@ -38,7 +38,7 @@
 
 //------------------- below are the files where _palette-variables.scss is included and map-get() is used -------------------
 // Layouts
-//@import "core/layouts/sidebar-content";
+@import "core/layouts/sidebar-content";
 @import "components/notification-sidebar";
 // Pages
 @import "pages/authentication";
