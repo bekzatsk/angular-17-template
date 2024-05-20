@@ -1,11 +1,11 @@
 import {Component, Inject, Renderer2} from '@angular/core';
-import {DOCUMENT, NgIf} from "@angular/common";
+import {DOCUMENT} from "@angular/common";
 import {ReactiveFormsModule, UntypedFormControl, UntypedFormGroup, Validators} from "@angular/forms";
 
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.scss'
 })

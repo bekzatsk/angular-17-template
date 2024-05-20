@@ -220,9 +220,9 @@ nav.navbar.header-navbar {
     }
 
     .notification {
-      position: relative;
-      top: -15px;
-      right: 14px;
+      position: absolute;
+      top: -10px;
+      left: 7px;
       padding: 0.25rem 0.4rem;
     }
   }
@@ -307,16 +307,20 @@ nav.navbar.header-navbar {
     }
   }
 }
-@include media-breakpoint-down(xs) {
-  nav.navbar.header-navbar {
-    padding: .3rem .5rem !important;
-  }
-}
+//@include media-breakpoint-down(xs) {
+//  nav.navbar.header-navbar {
+//    padding: .3rem .5rem !important;
+//  }
+//}
 
 @media(max-width: 525px) {
   .header-navbar .navbar-container .notification-dropdown {
     right: -2rem;
     width: 350px !important;
+  }
+
+  nav.navbar.header-navbar {
+    padding: .3rem .5rem !important;
   }
 }
 

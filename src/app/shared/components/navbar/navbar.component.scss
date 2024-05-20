@@ -1,4 +1,34 @@
 nav {
-  background-color: #2EA54F;
+  background-color: #2ea54f1f;
 }
 
+.nav-user  {
+  .user {
+    flex-direction: column;
+    line-height: 1.1rem;
+
+    span {
+      display: block;
+    }
+  }
+
+  img {
+    width: 35px;
+    height: 35px;
+    object-fit: cover;
+  }
+}
+
+.navbar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dropdown-item:focus, .dropdown-item:hover {
+  &:focus, &:hover {
+    color: inherit;
+    text-decoration: none;
+    background-color: #f7f7f8;
+  }
+}

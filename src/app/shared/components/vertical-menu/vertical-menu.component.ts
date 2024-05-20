@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
 import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../interfaces/template-config.metada";
@@ -30,7 +30,9 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   collapseSidebar = false;
   bgImage: string = '';
   public menuItems: RouteInfo[] = [];
+  protected innerWidth: any;
   logoUrl = 'assets/img/logo.png';
+  resizeTimeout: any;
 
   constructor(
     private configService: ConfigService,
@@ -76,6 +78,17 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   }
 
+  @HostListener('window:resize', ['$event'])
+  onWindowResize(event: any) {
+    if (this.resizeTimeout) {
+      clearTimeout(this.resizeTimeout);
+    }
+    this.resizeTimeout = setTimeout((() => {
+      this.innerWidth = event.target.innerWidth;
+      this.loadLayout();
+    }).bind(this), 500);
+  }
+
   openSubMenu(item: RouteInfo) {
     this.menuItems.forEach(it => {
       if (it != item) {
@@ -98,6 +111,14 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   }
 
   loadLayout() {
+    if (this.config.layout.sidebar.backgroundColor === 'white') {
+      // this.logoUrl = 'assets/img/logo-dark.png';
+    } else {
+      // this.logoUrl = 'assets/img/logo.png';
+    }
 
+    this.collapseSidebar = this.config.layout.sidebar.collapsed;
   }
+
+
 }

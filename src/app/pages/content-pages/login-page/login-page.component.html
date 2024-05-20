@@ -14,9 +14,11 @@
                 <form [formGroup]="loginForm">
                   <div class="form-group">
                     <input type="text" formControlName="username" class="form-control" placeholder="Username" required>
-                    <div *ngIf="loginFormSubmitted"
-                         class="help-block mt-1 text-danger"> <i class="ft-alert-circle align-middle"></i> This is
-                      required</div>
+                    @if(loginFormSubmitted) {
+                      <div class="help-block mt-1 text-danger">
+                        <i class="ft-alert-circle align-middle"></i> This is required
+                      </div>
+                    }
                   </div>
                   <div class="form-group">
                     <input type="password" formControlName="password" class="form-control" placeholder="Password" required>
@@ -42,8 +44,8 @@
                 <div class="d-flex justify-content-between align-items-center">
                   <h6 class="text-primary m-0">Or Login With</h6>
                   <div class="login-options">
-                    <a class="btn btn-sm btn-social-icon btn-facebook mr-1"><span class="fa fa-facebook"></span></a>
-                    <a class="btn btn-sm btn-social-icon btn-twitter mr-1"><span class="fa fa-twitter"></span></a>
+                    <a class="btn btn-sm btn-social-icon btn-facebook me-1"><span class="fa fa-facebook"></span></a>
+                    <a class="btn btn-sm btn-social-icon btn-twitter me-1"><span class="fa fa-twitter"></span></a>
                   </div>
                 </div>
               </div>

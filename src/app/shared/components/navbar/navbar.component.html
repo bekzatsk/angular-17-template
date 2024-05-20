@@ -1,1 +1,75 @@
-<nav class="navbar navbar-expand-lg navbar-light header-navbar">ll</nav>
+<nav class="navbar navbar-expand-lg navbar-light header-navbar navbar-sticky">
+  <div class="container-fluid navbar-wrapper">
+    <div class="navbar-header d-flex">
+      <div class="navbar-toggle menu-toggle d-xl-none d-block float-left align-items-center justify-content-center"
+           data-toggle="collapse" (click)="toggleSidebar()">
+        <i class="ft-menu font-medium-3"></i>
+      </div>
+      <ul class="navbar-nav">
+        <li class="nav-item d-none d-lg-block">
+          <a class="nav-link" id="navbar-fullscreen" href="javascript:;" appToggleFullscreen
+             (click)="ToggleClass()">
+            <i-feather [name]="toggleClass" class="size-20"></i-feather>
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="navbar-container">
+      <ul class="navbar-nav">
+        <li class="dropdown nav-item me-2" placement="bottom-left" display="static" ngbDropdown >
+          <a class="nav-link dropdown-toggle dropdown-notification p-0 " id="drp-notification" href="javascript:;"
+             data-toggle="dropdown" ngbDropdownToggle>
+            <i-feather name="bell" class="size-20"></i-feather>
+            <span class="notification badge rounded-pill badge-danger">4</span>
+          </a>
+        </li>
+        <li class="nav-item nav-user me-2" ngbDropdown display="dynamic" placement="bottom-end">
+          <a id="user-navbar" class="nav-link d-flex align-items-end" ngbDropdownToggle>
+            <div class="user d-md-flex d-none me-2">
+              <span class="text-end">{{user?.name}}</span><span
+              class="text-end text-muted font-small-3">Available</span>
+            </div>
+            <div class="avatar avatar-navbar">
+              @if (user?.avatar) {
+                <img class="" [src]="user.avatar" alt="avatar" />
+              } @else {
+                <span class="avatar-content">
+                  <i class="avatar-icon icon-user"></i>
+                </span>
+              }
+            </div>
+          </a>
+          <div class="dropdown-menu text-left dropdown-menu-right m-0 pb-0" ngbDropdownMenu aria-labelledby="user-navbar">
+            <a class="dropdown-item" href="javascript:">
+              <div class="d-flex align-items-center">
+                <i-feather name="message-square" class="size-16 me-2"></i-feather><span>Chat</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="javascript:">
+              <div class="d-flex align-items-center">
+                <i-feather name="edit" class="size-16 me-2"></i-feather><span>Edit Profile</span>
+              </div>
+            </a>
+            <a class="dropdown-item" href="javascript:">
+              <div class="d-flex align-items-center">
+                <i-feather name="mail" class="size-16 me-2"></i-feather><span>My Inbox</span>
+              </div>
+            </a>
+            <div class="dropdown-divider"></div>
+            <a class="dropdown-item" routerLink="/pages/login">
+              <div class="d-flex align-items-center">
+                <i-feather name="power" class="size-16 me-2"></i-feather><span>Logout</span>
+              </div>
+            </a>
+          </div>
+        </li>
+        <li class="nav-item d-none d-lg-block me-2">
+          <a class="nav-link notification-sidebar-toggle" (click)="toggleNotificationSidebar();">
+            <i-feather name="align-right" class="size-20"></i-feather>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

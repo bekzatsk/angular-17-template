@@ -2,12 +2,12 @@ import {RouteInfo} from "./vertical-menu.metada";
 
 export const ROUTES: RouteInfo[] = [
   {
-    path: '', title: 'Dashboard', icon: 'home', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-danger float-right mr-1 mt-1', isExternalLink: false, submenu: [
+    path: '', title: 'Dashboard', icon: 'home', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-danger float-right me-1 mt-1', isExternalLink: false, submenu: [
       { path: '/dashboard/dashboard1', title: 'Dashboard 1', icon: 'arrow-right', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/dashboard/dashboard2', title: 'Dashboard 2', icon: 'arrow-right', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
     ]
   },
-  { path: '/inbox', title: 'Email', icon: 'mail', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
+  { path: '/pages/test', title: 'Email', icon: 'mail', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   { path: '/chat', title: 'Chat', icon: 'message-square', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   { path: '/chat-ngrx', title: 'Chat NgRx', icon: 'message-square', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
   { path: '/taskboard', title: 'Task Board', icon: 'file-text', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
@@ -73,7 +73,7 @@ export const ROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '', title: 'Forms', icon: 'edit', class: 'has-sub', badge: 'New', badgeClass: 'badge badge-pill badge-primary float-right mr-1 mt-1', isExternalLink: false,
+    path: '', title: 'Forms', icon: 'edit', class: 'has-sub', badge: 'New', badgeClass: 'badge badge-pill badge-primary float-right me-1 mt-1', isExternalLink: false,
     submenu: [
       {
         path: '', title: 'Elements', icon: 'arrow-right', class: 'has-sub', badge: '', badgeClass: '', isExternalLink: false,
@@ -120,7 +120,7 @@ export const ROUTES: RouteInfo[] = [
     ]
   },
   {
-    path: '', title: 'Charts', icon: 'bar-chart-2', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-success float-right mr-1 mt-1', isExternalLink: false,
+    path: '', title: 'Charts', icon: 'bar-chart-2', class: 'has-sub', badge: '2', badgeClass: 'badge badge-pill badge-success float-right me-1 mt-1', isExternalLink: false,
     submenu: [
       { path: '/charts/chartjs', title: 'ChartJs', icon: 'arrow-right', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },
       { path: '/charts/chartist', title: 'Chartist', icon: 'arrow-right', class: '', badge: '', badgeClass: '', isExternalLink: false, submenu: [] },

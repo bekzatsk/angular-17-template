@@ -2,11 +2,23 @@ import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, On
 import {LayoutService} from "../../services/layout.service";
 import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
+import {FeatherModule} from "angular-feather";
+import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
+import {RouterLink} from "@angular/router";
+import {ToggleFullscreenDirective} from "../../directives/toggle-fullscreen.directive";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
-  imports: [],
+  imports: [
+    FeatherModule,
+    NgbDropdown,
+    NgbDropdownToggle,
+    NgbDropdownMenu,
+    NgbDropdownItem,
+    RouterLink,
+    ToggleFullscreenDirective
+  ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss'
 })
@@ -17,6 +29,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   isSmallScreen = false;
   protected innerWidth: any;
   public config: any = {};
+  toggleClass = "maximize";
+  user: any = {
+    name: 'John Doe',
+    avatar: 'assets/img/sidebar-bg/04.jpg'
+  };
 
   constructor(
     private layoutService: LayoutService,
@@ -66,6 +83,22 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   loadLayout() {
 
+  }
+
+  toggleSidebar() {
+    this.layoutService.toggleSidebarSmallScreen(this.hideSidebar);
+  }
+
+  ToggleClass() {
+    if (this.toggleClass === "maximize") {
+      this.toggleClass = "minimize";
+    } else {
+      this.toggleClass = "maximize";
+    }
+  }
+
+  toggleNotificationSidebar() {
+    this.layoutService.toggleNotificationSidebar(true);
   }
 
 }
