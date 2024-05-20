@@ -4,9 +4,10 @@
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
+    "build": "ng build --aot --configuration production --build-optimizer --output-hashing=all && npm run compress",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "compress": "ts-node gzipper_compress.ts"
   },
   "private": true,
   "dependencies": {
@@ -23,6 +24,8 @@
     "@popperjs/core": "^2.11.8",
     "angular-feather": "^6.5.1",
     "bootstrap": "^5.3.2",
+    "crypto-js": "^4.2.0",
+    "ngx-cookie-service": "^17.1.0",
     "ngx-scrollbar": "^14.1.0",
     "rxjs": "~7.8.0",
     "screenfull": "^6.0.2",
@@ -34,6 +37,7 @@
     "@angular/cli": "^17.3.6",
     "@angular/compiler-cli": "^17.3.7",
     "@angular/localize": "^17.3.7",
+    "@types/crypto-js": "^4.2.2",
     "@types/jasmine": "~5.1.0",
     "jasmine-core": "~5.1.0",
     "karma": "~6.4.0",

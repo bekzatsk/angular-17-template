@@ -4,8 +4,9 @@ import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
 import {FeatherModule} from "angular-feather";
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
-import {RouterLink} from "@angular/router";
+import {Router, RouterLink} from "@angular/router";
 import {ToggleFullscreenDirective} from "../../directives/toggle-fullscreen.directive";
+import {AuthService} from "../../auth/auth.service";
 
 @Component({
   selector: 'app-navbar',
@@ -39,6 +40,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     private layoutService: LayoutService,
     private configService: ConfigService,
     private cdr: ChangeDetectorRef,
+    private authService: AuthService,
+    protected router: Router
   ) {
     this.layoutSub = layoutService.toggleSidebar$.subscribe(
       isShow => {
@@ -99,6 +102,11 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
 
   toggleNotificationSidebar() {
     this.layoutService.toggleNotificationSidebar(true);
+  }
+
+  logout() {
+    this.authService.logout();
+    this.router.navigate(['/contents/login']).then();
   }
 
 }
