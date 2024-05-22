@@ -1,23 +1,33 @@
-import {AfterViewInit, ChangeDetectorRef, Component, Inject, OnDestroy, OnInit, Renderer2} from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Component,
+  HostListener,
+  Inject,
+  OnDestroy,
+  OnInit,
+  Renderer2
+} from '@angular/core';
 import {RouterOutlet} from "@angular/router";
 import {VerticalMenuComponent} from "../../shared/components/vertical-menu/vertical-menu.component";
-import {CommonModule, DOCUMENT} from "@angular/common";
+import {DOCUMENT, NgClass} from "@angular/common";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../shared/interfaces/template-config.metada";
 import {ConfigService} from "../../shared/services/config.service";
 import {IconsModule} from "../../shared/modules/icons.module";
 import {LayoutService} from "../../shared/services/layout.service";
 import {NavbarComponent} from "../../shared/components/navbar/navbar.component";
+import {WINDOW} from "../../shared/services/window.service";
 
 @Component({
   selector: 'app-full-layout',
   standalone: true,
   imports: [
     RouterOutlet,
-    CommonModule,
     VerticalMenuComponent,
     IconsModule,
-    NavbarComponent
+    NavbarComponent,
+    NgClass
   ],
   templateUrl: './full-layout.component.html',
   styleUrl: './full-layout.component.scss'
@@ -31,6 +41,7 @@ export class FullLayoutComponent implements OnInit, AfterViewInit, OnDestroy  {
   displayOverlayMenu = false;
   hideSidebar = false;
   isSmallScreen = false;
+  isScrollTopVisible = false;
 
   constructor(
     private configService: ConfigService,
@@ -38,6 +49,7 @@ export class FullLayoutComponent implements OnInit, AfterViewInit, OnDestroy  {
     private cdr: ChangeDetectorRef,
     private renderer: Renderer2,
     @Inject(DOCUMENT) private document: Document,
+    @Inject(WINDOW) private window: Window,
   ) {
 
   }
@@ -170,6 +182,34 @@ export class FullLayoutComponent implements OnInit, AfterViewInit, OnDestroy  {
         this.renderer.removeClass(this.document.body, "vertical-overlay-menu");
       }
     }
+  }
+
+  //Add/remove classes on page scroll
+  @HostListener("window:scroll", [])
+  onWindowScroll() {
+    const number = this.window.scrollY || this.document.documentElement.scrollTop || this.document.body.scrollTop || 0;
+    if (number > 60) {
+      this.renderer.addClass(this.document.body, "navbar-scrolled");
+    } else {
+      this.renderer.removeClass(this.document.body, "navbar-scrolled");
+    }
+
+    this.isScrollTopVisible = number > 400;
+
+    if (number > 20) {
+      this.renderer.addClass(this.document.body, "page-scrolled");
+    } else {
+      this.renderer.removeClass(this.document.body, "page-scrolled");
+    }
+  }
+
+  //scroll to top on click
+  scrollToTop() {
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth'
+    });
   }
 
 }

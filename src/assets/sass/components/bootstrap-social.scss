@@ -11,6 +11,17 @@ $bs-height-xs: (floor($font-size-sm * 1.2) + 1.4rem) !default;
   overflow: hidden;
   text-overflow: ellipsis;
   color: $white !important;
+  display: inline-flex;
+
+  i-feather {
+    //width: 1.6em;
+    height: 100%;
+
+    svg {
+      height: ($bs-height-base - 1.5) !important;
+      width: ($bs-height-base - 1.5) !important;
+    }
+  }
 
   > :first-child {
     position: absolute;

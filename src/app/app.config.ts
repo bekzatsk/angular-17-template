@@ -4,6 +4,7 @@ import {PreloadAllModules, provideRouter, withDebugTracing, withPreloading} from
 import { routes } from './app.routes';
 import {provideHttpClient, withFetch} from "@angular/common/http";
 import {AuthService} from "./shared/auth/auth.service";
+import {WINDOW_PROVIDERS} from "./shared/services/window.service";
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -16,5 +17,6 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(
       withFetch(),
     ),
+    WINDOW_PROVIDERS
   ]
 };

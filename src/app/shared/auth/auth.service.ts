@@ -2,7 +2,7 @@ import {Injectable} from "@angular/core";
 import {HttpClient} from "@angular/common/http";
 import {StorageService} from "./storage.service";
 import {environment} from "../../../environments/environment";
-import {lastValueFrom, takeLast} from "rxjs";
+import {lastValueFrom} from "rxjs";
 
 @Injectable()
 export class AuthService {

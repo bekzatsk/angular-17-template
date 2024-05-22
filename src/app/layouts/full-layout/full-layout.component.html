@@ -18,6 +18,11 @@
         <router-outlet></router-outlet>
       </div>
     </div>
+
+<!--    <app-footer></app-footer>-->
+    @if (isScrollTopVisible) {
+      <button class="btn btn-primary scroll-top" type="button" (click)="scrollToTop()"><i-feather name="arrow-up" class=""></i-feather></button>
+    }
   </div>
 </div>
 
