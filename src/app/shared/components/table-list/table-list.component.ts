@@ -15,8 +15,8 @@ import {Header} from "../../interfaces/table.metadata";
 import {JsonPipe, NgClass, NgTemplateOutlet} from "@angular/common";
 import {FormsModule} from "@angular/forms";
 import {NgbOffcanvas, NgbPagination, NgbPaginationNext, NgbPaginationPrevious} from "@ng-bootstrap/ng-bootstrap";
-import {FeatherModule} from "angular-feather";
 import {NgScrollbar} from "ngx-scrollbar";
+import {IconsModule} from "../../modules/icons.module";
 
 @Component({
   selector: 'app-table-list',
@@ -28,7 +28,7 @@ import {NgScrollbar} from "ngx-scrollbar";
     NgbPagination,
     NgbPaginationPrevious,
     NgbPaginationNext,
-    FeatherModule,
+    IconsModule,
     JsonPipe,
     NgTemplateOutlet,
     NgScrollbar,

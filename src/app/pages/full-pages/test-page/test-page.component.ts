@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {FeatherModule} from "angular-feather";
+import {IconsModule} from "../../../shared/modules/icons.module";
 
 
 @Component({
   selector: 'app-full-test-page',
   standalone: true,
   imports: [
-    FeatherModule
+    IconsModule
   ],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss'

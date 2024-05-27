@@ -2,17 +2,17 @@ import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, On
 import {LayoutService} from "../../services/layout.service";
 import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
-import {FeatherModule} from "angular-feather";
 import {NgbDropdown, NgbDropdownItem, NgbDropdownMenu, NgbDropdownToggle} from "@ng-bootstrap/ng-bootstrap";
 import {Router, RouterLink} from "@angular/router";
 import {ToggleFullscreenDirective} from "../../directives/toggle-fullscreen.directive";
 import {AuthService} from "../../auth/auth.service";
+import {IconsModule} from "../../modules/icons.module";
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
-    FeatherModule,
+    IconsModule,
     NgbDropdown,
     NgbDropdownToggle,
     NgbDropdownMenu,
@@ -76,12 +76,7 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
     this.innerWidth = event.target.innerWidth;
-    if (this.innerWidth < 1200) {
-      this.isSmallScreen = true;
-    }
-    else {
-      this.isSmallScreen = false;
-    }
+    this.isSmallScreen = this.innerWidth < 1200;
   }
 
   loadLayout() {

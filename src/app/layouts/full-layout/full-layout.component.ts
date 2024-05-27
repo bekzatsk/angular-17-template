@@ -14,10 +14,10 @@ import {DOCUMENT, NgClass} from "@angular/common";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../shared/interfaces/template-config.metada";
 import {ConfigService} from "../../shared/services/config.service";
-import {IconsModule} from "../../shared/modules/icons.module";
 import {LayoutService} from "../../shared/services/layout.service";
 import {NavbarComponent} from "../../shared/components/navbar/navbar.component";
 import {WINDOW} from "../../shared/services/window.service";
+import {IconsModule} from "../../shared/modules/icons.module";
 
 @Component({
   selector: 'app-full-layout',
@@ -25,9 +25,9 @@ import {WINDOW} from "../../shared/services/window.service";
   imports: [
     RouterOutlet,
     VerticalMenuComponent,
-    IconsModule,
     NavbarComponent,
-    NgClass
+    NgClass,
+    IconsModule
   ],
   templateUrl: './full-layout.component.html',
   styleUrl: './full-layout.component.scss'

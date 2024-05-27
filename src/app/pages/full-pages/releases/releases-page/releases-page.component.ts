@@ -1,5 +1,4 @@
 import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
-import {FeatherModule} from "angular-feather";
 import {TableListComponent} from "../../../../shared/components/table-list/table-list.component";
 import {HEADERS, STATUSES} from "./data.metadata";
 import {environment} from "../../../../../environments/environment";
@@ -13,13 +12,14 @@ import {RouterLink} from "@angular/router";
 import {ImageSecurePipe} from "../../../../shared/pipes/image-secure.pipe";
 import {InputDatetimeComponent} from "../../../../shared/components/input-datetime/input-datetime.component";
 import {FormsModule} from "@angular/forms";
+import {IconsModule} from "../../../../shared/modules/icons.module";
 
 
 @Component({
   selector: 'app-releases-catalog-page',
   standalone: true,
   imports: [
-    FeatherModule,
+    IconsModule,
     TableListComponent,
     NgClass,
     RouterLink,

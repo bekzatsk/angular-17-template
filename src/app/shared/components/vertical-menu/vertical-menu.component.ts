@@ -6,9 +6,9 @@ import {CommonModule} from "@angular/common";
 import {ROUTES} from "./vertical-menu-routes.config";
 import {RouteInfo} from "./vertical-menu.metada";
 import {RouterLink} from "@angular/router";
-import {IconsModule} from "../../modules/icons.module";
 import {NgScrollbarModule} from "ngx-scrollbar";
 import {LayoutService} from "../../services/layout.service";
+import {IconsModule} from "../../modules/icons.module";
 
 
 @Component({
@@ -17,8 +17,8 @@ import {LayoutService} from "../../services/layout.service";
   imports: [
     CommonModule,
     RouterLink,
-    IconsModule,
-    NgScrollbarModule
+    NgScrollbarModule,
+    IconsModule
   ],
   templateUrl: './vertical-menu.component.html',
   styleUrl: './vertical-menu.component.scss'

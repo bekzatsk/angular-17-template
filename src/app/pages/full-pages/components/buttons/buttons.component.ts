@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import {FeatherModule} from "angular-feather";
+import {IconsModule} from "../../../../shared/modules/icons.module";
 
 @Component({
   selector: 'app-buttons',
   standalone: true,
   templateUrl: './buttons.component.html',
   imports: [
-    FeatherModule
+    IconsModule
   ],
   styleUrls: ['./buttons.component.scss']
 })

@@ -11,16 +11,13 @@ import {
 } from '@angular/core';
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {
-  NgbDateParserFormatter, NgbDatepickerConfig,
-  NgbDateStruct, NgbInputDatepicker, NgbTimepicker,
-  NgbTimepickerConfig,
-  NgbTimeStruct
+  NgbDateParserFormatter, NgbTimepicker,
+  NgbDateStruct, NgbInputDatepicker,
+  NgbTimepickerConfig, NgbTimeStruct
 } from "@ng-bootstrap/ng-bootstrap";
 import {DateParserFormatter} from '../../services/datepicker/date-format.service';
-import {TranslateModule} from "@ngx-translate/core";
 import {NgClass} from "@angular/common";
-import moment from "moment";
-import {FeatherModule} from "angular-feather";
+import {IconsModule} from "../../modules/icons.module";
 
 @Component({
   selector: 'app-input-datetime',
@@ -39,7 +36,7 @@ import {FeatherModule} from "angular-feather";
     FormsModule,
     NgClass,
     NgbTimepicker,
-    FeatherModule
+    IconsModule
   ],
   standalone: true
 })
@@ -60,9 +57,7 @@ export class InputDatetimeComponent implements ControlValueAccessor, OnInit, OnC
   maxDateNgb: NgbDateStruct | null = null
   config = inject(NgbTimepickerConfig);
 
-  constructor(
-      private changeDetector: ChangeDetectorRef,
-  ) {
+  constructor() {
       this.config.spinners = false;
   }
 
