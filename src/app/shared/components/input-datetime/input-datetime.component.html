@@ -1,0 +1,22 @@
+<div class="d-flex justify-content-between align-items-center">
+  <div class="position-relative has-icon-right full-width date-calendar">
+    <input #d2="ngbDatepicker"
+       class="form-control {{classes}}"
+       name="dp"
+       ngbDatepicker
+       [container]="container"
+       [attr.minDate]="minDateNgb ? minDateNgb : null"
+       [attr.maxDate]="maxDate ? maxDate : null"
+       [navigation]="navigation"
+       [placeholder]="placeholder"
+       [(ngModel)]="date"
+       (ngModelChange)="changeValues($event)"
+    >
+    <div class="form-control-position" (click)="d2.toggle()" [ngClass]="{'form-control-position-lg' : classes.includes('form-control-lg')}">
+      <i-feather name="calendar" class="size-18"></i-feather>
+    </div>
+  </div>
+  @if (enableTime) {
+    <ngb-timepicker [(ngModel)]="time" (change)="changeValues($event)"></ngb-timepicker>
+  }
+</div>

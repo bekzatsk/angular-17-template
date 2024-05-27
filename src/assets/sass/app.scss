@@ -1,3 +1,5 @@
+@import "core/colors/palette-variables";
+
 i-feather {
   display: flex !important;
   align-items: center;
@@ -10,5 +12,15 @@ i-feather {
   .size-#{$size} {
     width: $size + 0px !important;
     height: $size + 0px !important;;
+  }
+}
+
+.more-action {
+  i, i-feather {
+    font-size: 1rem !important;
+    background: map-get($grey-color, lighten-2);
+    border-radius: 50%;
+    padding: 2px;
+    cursor: pointer;
   }
 }

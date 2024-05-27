@@ -113,7 +113,7 @@ form,
       transition: all .3s ease;
     }
     ~.form-control-position{
-      i{
+      i, i-feather{
         color: map-get($primary-color, base);
       }
     }
@@ -159,10 +159,14 @@ form,
   position: absolute;
   top: 0;
   z-index: 2;
-  display: block;
+  //display: block;
   width: 2.5rem;
   line-height: 2.5rem;
   text-align: center;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 // icon on left
 .has-icon-left {

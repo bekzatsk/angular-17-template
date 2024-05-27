@@ -1,0 +1,161 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <div class="content-header">Catalog</div>
+      <p class="content-sub-header mb-1">You can define your sub-header here</p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+
+      <app-table-list
+        [headers]="headers"
+        [totalElements]="totalElements"
+        [data]="data"
+        [pageSize]="pageSize"
+        [pageIndex]="pageIndex"
+        (changePage)="pageChange($event)"
+        (searchEvent)="searchData($event)"
+        (changeFilter)="filterChange($event)"
+      >
+        <ng-template #leftFilterRef>
+          <ul class="list-unstyled list-inline list-type">
+            <li class="list-inline-item" [ngClass]="{'active': active == 1}" (click)="toStep(1)">
+              <div class="item-text">Releases ({{countRelease.releases}})</div>
+            </li>
+            <li class="list-inline-item" [ngClass]="{'active': active == 2}" (click)="toStep(2)">
+              <div class="item-text">Draft ({{countRelease.draft}})</div>
+            </li>
+            <li class="list-inline-item" [ngClass]="{'active': active == 3}" (click)="toStep(3)">
+              <div class="item-text">Need a fix ({{countRelease.needFix}})</div>
+            </li>
+          </ul>
+        </ng-template>
+        <ng-template #customRowRef let-item>
+          <tr>
+            <td class="td-center">
+              <i-feather name="disc" class="d-inline-block size=22"></i-feather>
+            </td>
+            <td>
+              <div class="d-flex">
+                <div class="me-2">
+                  @defer {
+
+                    @if (!item.imgError) {
+                      <img [ngSrc]="imageURL + '/' + item.coverArt + '?size=160'" alt=""
+                           [width]="42"
+                           [height]="42"
+                           [hidden]="item.imgError"
+                           (error)="item.imgError = true"
+                           loading="lazy"
+                      />
+                    } @else {
+                      <div class="no-image">
+                        <i-feather name="music" class="size-12"></i-feather>
+                      </div>
+                    }
+                  } @loading () {
+                    <div class="no-image">
+                      <i-feather name="music" class="size-12"></i-feather>
+                    </div>
+                  } @error {
+                    <div class="no-image">
+                      <i-feather name="music" class="size-12"></i-feather>
+                    </div>
+                  }
+                </div>
+                <div class="description-size">
+                  <div class="d-block">
+                    <a [routerLink]="['/page/releases/release', item['id']]" class="fw-medium">{{item['releaseName']}}</a>
+                    @if (item['trackVersions']) {
+                      <span> ({{item['trackVersions']}})</span>
+                    }
+                    @if (item['explicit']) {
+                      <div class="badge ms-1 badge-explicit" [ngClass]="{'badge-danger': item['trackCount'] == 1, 'badge-light': item['trackCount'] > 1}">E</div>
+                    }
+                  </div>
+                  <span>{{item['mainArtists']}}</span>
+                </div>
+              </div>
+            </td>
+            <td>{{item['trackCount']}} Track{{item['trackCount'] > 1 ? 's' : ''}}</td>
+            <td>{{item['upcean']}}</td>
+            <td>{{item['releaseDate'] | date : 'dd.MM.yyyy'}}</td>
+            <td>{{item['addedDate'] | date : 'dd.MM.yyyy'}}</td>
+            <td>
+            <span
+              class="badge"
+              [ngClass]="{
+                  'badge-success': item['status'] == 'RELEASED',
+                  'bg-light-warning': item['status'] == 'CHANGES_NEEDED',
+                  'bg-light-danger': ['PENDING_TAKE_DOWN', 'TAKEN_DOWN'].includes(item['status']),
+                  'badge-light': item['status'] == 'DRAFT',
+                  'badge-warning': item['status'] == 'PENDING',
+                  'bg-light-success': item['status'] == 'APPROVED',
+                  'badge-danger': item['status'] == 'REJECTED'
+                }"
+            >
+              {{getStatusLabel(item['status'])}}
+            </span>
+            </td>
+            <td>
+              <div class="more-action">
+                <i-feather name="more-horizontal-" class="size-16"></i-feather>
+              </div>
+            </td>
+          </tr>
+
+        </ng-template>
+        <ng-template #filterModalRef>
+          <fieldset class="form-group form-lg">
+            <label for="dateAdded">Date Added</label>
+            <app-input-datetime
+              [classes]="'form-control-lg'"
+              [container]="'body'"
+              id="dateAdded"
+              placeholder="Date Added"
+              [enableTime]="false"
+              [(ngModel)]="customFilter.addedDate"
+            ></app-input-datetime>
+          </fieldset>
+          <fieldset class="form-group form-lg">
+            <label for="releaseDate">Release Date</label>
+            <app-input-datetime
+              [classes]="'form-control-lg'"
+              [container]="'body'"
+              id="releaseDate"
+              placeholder="Release Date"
+              [enableTime]="false"
+              [(ngModel)]="customFilter.releaseDate"
+            ></app-input-datetime>
+          </fieldset>
+          <fieldset class="form-group form-lg">
+            <label>Status</label>
+<!--            <ng-select-->
+<!--              class="form-control-lg"-->
+<!--              [items]="statuses"-->
+<!--              [multiple]="true"-->
+<!--              bindLabel="label"-->
+<!--              bindValue="value"-->
+<!--              placeholder="Select Status"-->
+<!--              appendTo="body"-->
+<!--              [(ngModel)]="customFilter.status"-->
+<!--            >-->
+<!--              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">-->
+<!--                <div class="ng-value" [ngClass]="{'value-last': indexItem == 1}" *ngFor="let item of items | slice:0:2; let indexItem = index;">-->
+<!--                  <span class="ng-value-label">{{item.label}}</span>-->
+<!--                </div>-->
+<!--                <div class="ng-value value-last" *ngIf="items.length > 2">-->
+<!--                  <span class="ng-value-label">and {{items.length - 2}} others</span>-->
+<!--                </div>-->
+<!--              </ng-template>-->
+<!--            </ng-select>-->
+          </fieldset>
+
+        </ng-template>
+      </app-table-list>
+
+    </div>
+  </div>
+</div>

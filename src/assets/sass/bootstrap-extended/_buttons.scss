@@ -27,6 +27,9 @@
     height: $btn-line-height;
   }
 
+  &.btn-block {
+    display: block;
+  }
 }
 // warning button
 //.btn-warning, .btn-primary, .btn-success, .btn-danger, .btn-info {

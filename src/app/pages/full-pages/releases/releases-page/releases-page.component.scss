@@ -1,0 +1,27 @@
+@import "../../../../../assets/sass/core/colors/palette-variables";
+@import "../../../../../assets/sass/core/variables/variables";
+
+.list-type {
+  margin: 0;
+
+  li {
+    margin-right: 1.5rem;
+    cursor: pointer;
+
+    .item-text {
+      font-size: 1.5rem;
+      font-weight: 500;
+      color: map-get($grey-color, lighten-1);
+    }
+
+    &.active .item-text {
+      color: map-get($dark, base)
+    }
+  }
+}
+
+.badge-explicit {
+  position: absolute;
+  font-size: 10px;
+  padding: 3px 5px;
+}

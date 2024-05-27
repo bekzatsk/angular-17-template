@@ -16,6 +16,10 @@ export const FULL_ROUTES: Routes = [
         component: ButtonsComponent,
         title: 'Test page'
       },
+      {
+        path: 'releases',
+        loadChildren: () => import('./releases/releases-pages.routes').then(m => m.RELEASES_ROUTES)
+      },
     ]
   }
 ]

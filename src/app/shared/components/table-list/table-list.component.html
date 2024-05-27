@@ -1,0 +1,121 @@
+<div class="d-flex mb-2">
+    <div class="full-width custom-template-filter">
+      @if (leftFilterRef) {
+        <ng-container [ngTemplateOutlet]="leftFilterRef"></ng-container>
+      }
+    </div>
+    <div class="d-flex">
+        <div class="position-relative has-icon-left form-searching ms-2" [ngClass]="{'d-none': !searching}">
+            <input
+                type="text"
+                class="form-control form-control-lg round"
+                placeholder="Search"
+                #search
+                autofocus
+                [(ngModel)]="searchText"
+                (ngModelChange)="onSearching($event)"
+                (focusout)="searching = false"
+            >
+            <div class="form-control-position form-control-position-lg">
+              <i-feather name="search" class="size-18"></i-feather>
+            </div>
+        </div>
+        <button type="button" class="btn btn-lg btn-light btn-icon round me-2 btn-searching"
+                [ngClass]="{'d-none': searching}"
+                (click)="onFocusingSearch()"
+        >
+          <i-feather name="search" class="size-18"></i-feather>
+        </button>
+        <button type="button" class="btn btn-lg btn-light round text-nowrap" (click)="openFilter(contentModal)">
+            Filter <i class="ft-filter ms-1"></i>
+        </button>
+    </div>
+</div>
+<table class="table table-custom">
+    <thead>
+      <tr>
+        @for (header of headers; track header) {
+          <th>{{header.title}}</th>
+        }
+      </tr>
+    </thead>
+    <tbody class="vertical-center">
+      @if (customRowRef) {
+        @for (row of data; track row) {
+          <ng-container [ngTemplateOutlet]="customRowRef" [ngTemplateOutletContext]="{ $implicit: row }"></ng-container>
+        }
+      } @else {
+          @for (row of data; track row) {
+            <tr>
+              @for (header of headers; track header) {
+                <td>
+                  {{row[header.field]}}
+                </td>
+              }
+            </tr>
+          }
+      }
+
+      @if (totalElements == 0) {
+        <tr>
+          <td [attr.colspan]="headers.length">
+            <div class="text-center mt-3 mb-3">
+              <h3>Sorry, no results were found for your search.</h3>
+              <small class="text-muted">It looks like the filter you applied did not match any results. Please try modifying or removing the filter to see more results</small>
+            </div>
+          </td>
+        </tr>
+      }
+    </tbody>
+</table>
+@if (totalElements > pageSize) {
+  <ngb-pagination class="no-margin mb-0"
+                  [collectionSize]="totalElements"
+                  [pageSize]="pageSize"
+                  [(page)]="pageIndex"
+                  [maxSize]="5"
+                  [rotate]="true"
+                  [size]="'sm'"
+                  [boundaryLinks]="false"
+                  (pageChange)="pageChange($event)"
+  >
+    <ng-template ngbPaginationPrevious><i-feather name="chevron-left" class="size-16"></i-feather></ng-template>
+    <ng-template ngbPaginationNext><i-feather name="chevron-right" class="size-16"></i-feather></ng-template>
+  </ngb-pagination>
+}
+
+<!-- START Right Sidebar-->
+<ng-template #contentModal let-offCanvas>
+  <div id="notification-sidebar" class="open wrapper">
+    <a class="notification-sidebar-close" (click)="offCanvas.dismiss('Cross click')">
+      <i-feather name="x" class="size-18 grey darken-1"></i-feather>
+    </a>
+    <ng-scrollbar [visibility]="'hover'">
+      <div class="side-nav notification-sidebar-content">
+        <div class="row">
+          <div class="col-12 notification-tab-content">
+            <div class="content-header border-bottom mt-0">
+              Filter
+            </div>
+
+            <div class="overflow-y-scroll pt-4 pb-4">
+              @if (filterModalRef) {
+                <ng-container [ngTemplateOutlet]="filterModalRef"></ng-container>
+              }
+              <div class="action-filter-button d-grid">
+                <button
+                  type="button"
+                  class="btn btn-lg btn-primary btn-block"
+                  (click)="filterChange($event)"
+                >
+                  Save
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-scrollbar>
+  </div>
+</ng-template>
+<!-- END Right Sidebar-->

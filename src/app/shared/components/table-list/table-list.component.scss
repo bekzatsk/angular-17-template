@@ -1,0 +1,18 @@
+@import "../../../../assets/sass/core/colors/palette-variables";
+@import "../../../../assets/sass/core/variables/variables";
+
+ngb-pagination {
+  transition: all 400ms;
+}
+
+.btn-icon {
+  &.btn-lg.round {
+    padding: 0.465rem 0.85rem;
+  }
+}
+
+.action-filter-button {
+  position: absolute;
+  bottom: 0;
+  width: calc(100% - 30px);
+}

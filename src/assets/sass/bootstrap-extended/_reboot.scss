@@ -24,6 +24,8 @@ body {
 }
 
 a {
+  text-decoration: none;
+
   &:focus {
     color: darken(theme-color("primary"), 5%);
     text-decoration: none;
