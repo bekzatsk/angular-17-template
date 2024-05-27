@@ -6,7 +6,7 @@ import {environment} from "../../../../../environments/environment";
 import {
   AbstractTableListComponent
 } from "../../../../shared/components/abstract-components/abstract-table-list.component";
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
 import {AsyncPipe, DatePipe, NgClass, NgOptimizedImage, SlicePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";

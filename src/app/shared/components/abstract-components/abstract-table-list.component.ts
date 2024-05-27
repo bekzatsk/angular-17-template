@@ -2,7 +2,7 @@ import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {IPageContent} from '../../interfaces/page-content.metadata';
 import {Header} from '../../interfaces/table.metadata';
 import {IMAGE_SRC} from '../../data/file-path';
-import {HttpClient} from "@angular/common/http";
+import { HttpClient } from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
 import {UtilService} from "../../services/util.service";
 
