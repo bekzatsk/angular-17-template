@@ -1,4 +1,14 @@
-import {ChangeDetectorRef, Component, EventEmitter, forwardRef, Input, OnChanges, OnInit, Output} from '@angular/core';
+import {
+  ChangeDetectorRef,
+  Component,
+  EventEmitter,
+  forwardRef,
+  inject,
+  Input,
+  OnChanges,
+  OnInit,
+  Output
+} from '@angular/core';
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {
   NgbDateParserFormatter, NgbDatepickerConfig,
@@ -48,12 +58,12 @@ export class InputDatetimeComponent implements ControlValueAccessor, OnInit, OnC
   time: NgbTimeStruct | null = null;
   minDateNgb: NgbDateStruct | null = null
   maxDateNgb: NgbDateStruct | null = null
+  config = inject(NgbTimepickerConfig);
 
   constructor(
       private changeDetector: ChangeDetectorRef,
-      config: NgbTimepickerConfig
   ) {
-      config.spinners = false;
+      this.config.spinners = false;
   }
 
   ngOnInit(): void {

@@ -5,7 +5,6 @@ import moment from "moment";
 
 @Injectable()
 export class DateParserFormatter extends NgbDateParserFormatter {
-
     DELIMITER = '-';
     formatView = 'dd.MM.yyyy';
     private datePipe = new DatePipe('en-US');
