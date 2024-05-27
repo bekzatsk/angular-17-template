@@ -13,6 +13,8 @@ import {ImageSecurePipe} from "../../../../shared/pipes/image-secure.pipe";
 import {InputDatetimeComponent} from "../../../../shared/components/input-datetime/input-datetime.component";
 import {FormsModule} from "@angular/forms";
 import {IconsModule} from "../../../../shared/modules/icons.module";
+import {NgSelectModule} from "@ng-select/ng-select";
+import {SelectOption} from "../../../../shared/interfaces/data.metadata";
 
 
 @Component({
@@ -29,7 +31,8 @@ import {IconsModule} from "../../../../shared/modules/icons.module";
     DatePipe,
     InputDatetimeComponent,
     FormsModule,
-    SlicePipe
+    SlicePipe,
+    NgSelectModule
   ],
   templateUrl: './releases-page.component.html',
   styleUrl: './releases-page.component.scss'
@@ -41,7 +44,7 @@ export class ReleasesPageComponent extends AbstractTableListComponent implements
     draft: 0,
     needFix: 0
   };
-  statuses = STATUSES;
+  statuses: SelectOption[] = STATUSES;
   customFilter = {
     addedDate: null,
     releaseDate: null,

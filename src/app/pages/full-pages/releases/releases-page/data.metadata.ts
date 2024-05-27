@@ -1,4 +1,5 @@
 import {Header} from '../../../../shared/interfaces/table.metadata';
+import {SelectOption} from "../../../../shared/interfaces/data.metadata";
 
 export const HEADERS: Header[] = [
     {
@@ -53,7 +54,7 @@ export const HEADERS: Header[] = [
     },
 ];
 
-export const STATUSES = [
+export const STATUSES: SelectOption[] = [
     {
         label: 'Changes Needed',
         value: 'CHANGES_NEEDED'

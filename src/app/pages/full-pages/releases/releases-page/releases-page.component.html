@@ -132,25 +132,30 @@
           </fieldset>
           <fieldset class="form-group form-lg">
             <label>Status</label>
-<!--            <ng-select-->
-<!--              class="form-control-lg"-->
-<!--              [items]="statuses"-->
-<!--              [multiple]="true"-->
-<!--              bindLabel="label"-->
-<!--              bindValue="value"-->
-<!--              placeholder="Select Status"-->
-<!--              appendTo="body"-->
-<!--              [(ngModel)]="customFilter.status"-->
-<!--            >-->
+            <ng-select
+              class="form-control-lg"
+              [items]="statuses"
+              [multiple]="true"
+              bindLabel="label"
+              bindValue="value"
+              placeholder="Select Status"
+              appendTo="body"
+              [(ngModel)]="customFilter.status"
+            >
 <!--              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">-->
-<!--                <div class="ng-value" [ngClass]="{'value-last': indexItem == 1}" *ngFor="let item of items | slice:0:2; let indexItem = index;">-->
-<!--                  <span class="ng-value-label">{{item.label}}</span>-->
-<!--                </div>-->
-<!--                <div class="ng-value value-last" *ngIf="items.length > 2">-->
-<!--                  <span class="ng-value-label">and {{items.length - 2}} others</span>-->
-<!--                </div>-->
+<!--                @for (item of items | slice : 0 : 2; track $index) {-->
+<!--                  <span class="ng-value" [ngClass]="{'value-last': $index == 1}">-->
+<!--                    <span class="ng-value-label">{{item.label}}</span>-->
+<!--                    <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>-->
+<!--                  </span>-->
+<!--                }-->
+<!--                @if (items.length > 2) {-->
+<!--                  <div class="ng-value value-last">-->
+<!--                    <span class="ng-value-label">and {{items.length - 2}} others</span>-->
+<!--                  </div>-->
+<!--                }-->
 <!--              </ng-template>-->
-<!--            </ng-select>-->
+            </ng-select>
           </fieldset>
 
         </ng-template>
