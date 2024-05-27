@@ -105,8 +105,8 @@
               </div>
             </td>
           </tr>
-
         </ng-template>
+
         <ng-template #filterModalRef>
           <fieldset class="form-group form-lg">
             <label for="dateAdded">Date Added</label>
@@ -142,19 +142,19 @@
               appendTo="body"
               [(ngModel)]="customFilter.status"
             >
-<!--              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">-->
-<!--                @for (item of items | slice : 0 : 2; track $index) {-->
-<!--                  <span class="ng-value" [ngClass]="{'value-last': $index == 1}">-->
-<!--                    <span class="ng-value-label">{{item.label}}</span>-->
-<!--                    <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>-->
-<!--                  </span>-->
-<!--                }-->
-<!--                @if (items.length > 2) {-->
-<!--                  <div class="ng-value value-last">-->
-<!--                    <span class="ng-value-label">and {{items.length - 2}} others</span>-->
-<!--                  </div>-->
-<!--                }-->
-<!--              </ng-template>-->
+              <ng-template ng-multi-label-tmp let-items="items" let-clear="clear">
+                @for (item of items | slice : 0 : 2; track item) {
+                  <span class="ng-value" [ngClass]="{'value-last': $index == 1}">
+                    <span class="ng-value-label">{{$any(item).label}}</span>
+                    <span class="ng-value-icon right" (click)="clear(item)" aria-hidden="true">×</span>
+                  </span>
+                }
+                @if (items.length > 2) {
+                  <div class="ng-value value-last">
+                    <span class="ng-value-label">and {{items.length - 2}} others</span>
+                  </div>
+                }
+              </ng-template>
             </ng-select>
           </fieldset>
 
