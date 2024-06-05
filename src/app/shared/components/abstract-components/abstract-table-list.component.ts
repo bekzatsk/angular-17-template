@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {IPageContent} from '../../interfaces/page-content.metadata';
 import {Header} from '../../interfaces/table.metadata';
 import {IMAGE_SRC} from '../../data/file-path';
@@ -11,6 +11,7 @@ import {UtilService} from "../../services/util.service";
   template: ''
 })
 export class AbstractTableListComponent implements OnInit {
+  protected http: HttpClient = inject(HttpClient);
   pageIndex = 1;
   loading = false;
   data: any[] = [];
@@ -22,12 +23,6 @@ export class AbstractTableListComponent implements OnInit {
   imageURL = IMAGE_SRC;
   queryFilter: any = {};
 
-  constructor(
-    protected http: HttpClient,
-    protected cdr: ChangeDetectorRef,
-  ) {
-  }
-
   ngOnInit() {
     this.getData({offset: 1}).then();
   }
@@ -35,8 +30,8 @@ export class AbstractTableListComponent implements OnInit {
   async getData(event: any) {
     this.pageIndex = event?.offset ?? 1;
     this.loading = true;
+    this.data = [];
     if (this.url) {
-      this.data = [];
       const result: IPageContent = await lastValueFrom(this.http.get<IPageContent>(`${this.url}`,
         {
           params: {

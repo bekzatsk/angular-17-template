@@ -1,4 +1,4 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {ChangeDetectorRef, Component, inject, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 // import {ToastrService} from 'ngx-toastr';
 import {DatePipe} from '@angular/common';
@@ -12,6 +12,12 @@ import {lastValueFrom} from "rxjs";
   template: ''
 })
 export class AbstractEditComponent implements OnInit {
+  protected fb: FormBuilder = inject(FormBuilder);
+  protected cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  protected http: HttpClient = inject(HttpClient);
+  protected route: ActivatedRoute = inject(ActivatedRoute);
+  protected router: Router = inject(Router);
+
   id?: string;
   isNew = true;
   isLoading = true;
@@ -26,18 +32,6 @@ export class AbstractEditComponent implements OnInit {
   imageURL = IMAGE_SRC;
   loadedRequest: any = {
       record: false
-  }
-
-  constructor(
-      protected fb: FormBuilder,
-      protected cdr: ChangeDetectorRef,
-      // protected toastr: ToastrService,
-      protected http: HttpClient,
-      // protected userService: UserService,
-      protected route: ActivatedRoute,
-      protected router: Router,
-  ) {
-
   }
 
   async ngOnInit() {

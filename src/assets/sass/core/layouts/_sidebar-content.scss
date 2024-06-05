@@ -724,7 +724,7 @@ body {
   }
 }
 
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down(xl) {
   .app-sidebar {
     transform: translate3d(-100%, 0, 0);
   }

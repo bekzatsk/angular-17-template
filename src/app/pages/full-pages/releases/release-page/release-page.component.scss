@@ -1,0 +1,279 @@
+@import "../../../../../assets/sass/core/colors/palette-variables";
+@import "../../../../../assets/sass/core/variables/variables";
+
+.main-page {
+  padding: 60px 0;
+  margin-right: -10px;
+  margin-left: -10px;
+  display: flex;
+  align-items: flex-start;
+
+  & > div {
+    padding-right: 10px;
+    padding-left: 10px;
+  }
+}
+
+.sidebar-section {
+  position: sticky;
+  top: 110px;
+  max-width: 270px;
+  width: 100%;
+}
+
+.main-section {
+  width: 100%;
+}
+
+.form-lg {
+  label {
+    font-size: 18px;
+  }
+}
+
+
+.group-list {
+  width: 100%;
+  margin-bottom: 1rem;
+  margin-right: -2px;
+  margin-left: -2px;
+
+  .item-flex {
+    display: flex;
+    align-items: center;
+  }
+
+  .group-item {
+    background-color: map-get($grey-color, lighten-4);
+    background-clip: border-box;
+    border: 0 solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.35rem;
+    padding: 0.5rem 1rem;
+    min-height: 1px;
+    height: 54px;
+    display: flex;
+    align-items: center;
+    margin: 4px 2px;
+
+    &.p-0 {
+      height: auto;
+    }
+
+    .label-name {
+      line-height: 1;
+
+      small {
+        font-size: 80%;
+      }
+    }
+
+    .description-name {
+      font-size: 0.875rem;
+
+      span {
+        font-weight: 500;
+      }
+    }
+
+    .select-type {
+      padding: 8px;
+      color: map-get($grey-color, base);
+      font-weight: 500;
+      cursor: pointer;
+
+      &.active {
+        color: map-get($dark, base);
+        border: none;
+      }
+
+    }
+
+    .fieldset-input {
+      padding: 3px 1rem;
+      transition: all .3s ease;
+      border-radius: 0.35rem;
+      border: 1px solid transparent;
+
+      &:focus-within {
+        border-color: map-get($primary-color, base);
+      }
+
+      label {
+        margin: 0;
+      }
+      input {
+        padding: 0;
+        border: none;
+        height: 24px;
+      }
+    }
+  }
+}
+
+.block-genres {
+  .genre-item {
+    background-color: map-get($grey-color, lighten-4);
+    border-radius: 0.35rem;
+    padding: 0.5rem 1rem;
+    margin: 4px 0;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+
+    span {
+      font-weight: 500;
+      display: block;
+    }
+
+    &.primary-genre {
+      background-color: map-get($grey-color, darken-3);
+
+      span {
+        color: #ffffff;
+      }
+      small {
+        color: map-get($grey-color, lighten-1);
+      }
+    }
+
+    &.secondary-genre {
+      background-color: map-get($grey-color, lighten-1);
+    }
+  }
+}
+
+.release-date {
+  .select-release {
+    font-size: 18px;
+    color: map-get($grey-color, base);
+    cursor: pointer;
+    transition: all 300ms;
+
+    &.selected {
+      font-weight: 500;
+      color: map-get($dark, base);
+    }
+
+    &:hover {
+      color: map-get($dark, base);
+    }
+  }
+}
+
+
+.hr-dashed {
+  border-bottom: 1px dashed map-get($grey-color, base);
+  width: 100%;
+}
+
+.split-progress {
+  padding: 1rem 0;
+  display: flex;
+  margin-right: -1px;
+  margin-left: -1px;
+
+  .item {
+    margin-right: 1px;
+    margin-left: 1px;
+
+    .progress {
+      height: 5px;
+      background-color: map-get($grey-color, base);
+      width: 100%;
+    }
+
+    .split-percent, .letters {
+      color: map-get($primary-color, base);
+    }
+
+    .split-percent {
+      font-weight: 300;
+      white-space: nowrap;
+    }
+
+    .letters {
+      font-weight: 500;
+      white-space: nowrap;
+    }
+  }
+}
+
+
+.block-radio {
+  .radio {
+    padding: 0.5rem 1rem;
+    margin: 8px 0;
+    background-color: map-get($grey-color, lighten-4);
+    border-radius: 0.35rem;
+  }
+
+}
+
+.lyricsTTML {
+  display: none;
+}
+
+.sidebar-section {
+  ul.list-group {
+    .list-group-item {
+      display: flex;
+      align-items: center;
+      color: map-get($grey-color, darken-1);
+      cursor: pointer;
+      transition: all 200ms;
+      padding: 0.75rem 0;
+      background-color: transparent;
+      border: none;
+
+      i {
+        font-size: 1.5rem;
+      }
+
+      &.was-validated {
+        i {
+          color: map-get($success-color, darken-1);
+        }
+      }
+
+      &.active {
+        font-weight: 500;
+        color: map-get($dark, base);
+        margin-top: 0;
+      }
+
+      &:hover {
+        color: map-get($dark, base);
+
+        .circle-number {
+          border-color: map-get($dark, base);
+        }
+      }
+    }
+  }
+}
+
+.circle-number {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 10px;
+  transition: all 200ms;
+
+  .was-validated {
+    color: map-get($success-color, base);
+
+    span {
+      color: map-get($success-color, base);
+    }
+  }
+
+  span {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+}

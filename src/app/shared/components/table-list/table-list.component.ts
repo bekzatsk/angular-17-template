@@ -2,11 +2,9 @@ import {
   Component,
   ContentChild,
   ElementRef,
-  EventEmitter,
   inject,
   Input,
-  OnDestroy,
-  Output,
+  OnDestroy, output,
   TemplateRef,
   ViewChild
 } from '@angular/core';
@@ -43,21 +41,20 @@ export class TableListComponent implements OnDestroy {
   @ViewChild('search') searchElement!: ElementRef;
   @Input() headers: Header[] = [];
   @Input() data: any[] = [];
+  @Input() isLoading = true;
   @Input() totalElements = 0;
   @Input() pageSize = 0;
   @Input() pageIndex = 0;
-  @Output() changePage: EventEmitter<string> = new EventEmitter<string>();
-  @Output() changeFilter: EventEmitter<string> = new EventEmitter<string>();
-  @Output() searchEvent: EventEmitter<string> = new EventEmitter<string>();
+  changePage = output<string>();
+  changeFilter = output<string>();
+  searchEvent = output<string>();
   private offCanvasService = inject(NgbOffcanvas);
 
   searching = false;
   filterIsOpen = false;
   searchText: string = '';
 
-  constructor(
-      private styleWrapper: StyleWrapperService,
-  ) {}
+  constructor(private styleWrapper: StyleWrapperService) {}
 
   ngOnDestroy() {
     this.styleWrapper.typeWrapper(null);

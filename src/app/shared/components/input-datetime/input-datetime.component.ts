@@ -1,13 +1,10 @@
 import {
-  ChangeDetectorRef,
   Component,
-  EventEmitter,
   forwardRef,
   inject,
   Input,
   OnChanges,
-  OnInit,
-  Output
+  OnInit, output,
 } from '@angular/core';
 import {ControlValueAccessor, FormsModule, NG_VALUE_ACCESSOR} from "@angular/forms";
 import {
@@ -50,7 +47,7 @@ export class InputDatetimeComponent implements ControlValueAccessor, OnInit, OnC
   @Input() minDate: Date | string | null = null;
   @Input() maxDate: Date | string | null = null;
   @Input() navigation: 'select' | 'arrows' | 'none' = 'select';
-  @Output() change: EventEmitter<Date | string> = new EventEmitter<Date | string>();
+  change = output<Date | string>();
   date: NgbDateStruct | null = null;
   time: NgbTimeStruct | null = null;
   minDateNgb: NgbDateStruct | null = null

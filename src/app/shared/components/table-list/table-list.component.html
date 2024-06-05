@@ -31,7 +31,7 @@
         </button>
     </div>
 </div>
-<table class="table table-custom">
+<table class="table table-custom" #tableSection>
     <thead>
       <tr>
         @for (header of headers; track header) {
@@ -40,32 +40,53 @@
       </tr>
     </thead>
     <tbody class="vertical-center">
-      @if (customRowRef) {
-        @for (row of data; track row) {
-          <ng-container [ngTemplateOutlet]="customRowRef" [ngTemplateOutletContext]="{ $implicit: row }"></ng-container>
-        }
-      } @else {
-          @for (row of data; track row) {
-            <tr>
-              @for (header of headers; track header) {
-                <td>
-                  {{row[header.field]}}
-                </td>
-              }
-            </tr>
-          }
-      }
-
-      @if (totalElements == 0) {
+      @if (isLoading) {
         <tr>
           <td [attr.colspan]="headers.length">
             <div class="text-center mt-3 mb-3">
-              <h3>Sorry, no results were found for your search.</h3>
-              <small class="text-muted">It looks like the filter you applied did not match any results. Please try modifying or removing the filter to see more results</small>
+              <span class="loader"></span>
             </div>
           </td>
         </tr>
+
+      } @else {
+        @if (data.length > 0) {
+          @if (customRowRef) {
+            @for (row of data; track row) {
+              <ng-container [ngTemplateOutlet]="customRowRef" [ngTemplateOutletContext]="{ $implicit: row }"></ng-container>
+            }
+          } @else {
+            @for (row of data; track row) {
+              <tr>
+                @for (header of headers; track header) {
+                  <td>
+                    {{row[header.field]}}
+                  </td>
+                }
+              </tr>
+            }
+          }
+        } @else {
+          <tr>
+            <td [attr.colspan]="headers.length">
+              <div class="text-center mt-3 mb-3">
+                <h3>Sorry, no results were found for your search.</h3>
+                <small class="text-muted">It looks like the filter you applied did not match any results. Please try modifying or removing the filter to see more results</small>
+              </div>
+            </td>
+          </tr>
+        }
       }
+<!--      @if (totalElements == 0) {-->
+<!--        <tr>-->
+<!--          <td [attr.colspan]="headers.length">-->
+<!--            <div class="text-center mt-3 mb-3">-->
+<!--              <h3>Sorry, no results were found for your search.</h3>-->
+<!--              <small class="text-muted">It looks like the filter you applied did not match any results. Please try modifying or removing the filter to see more results</small>-->
+<!--            </div>-->
+<!--          </td>-->
+<!--        </tr>-->
+<!--      }-->
     </tbody>
 </table>
 @if (totalElements > pageSize) {

@@ -1,4 +1,4 @@
-import {Injectable} from "@angular/core";
+import {inject, Injectable} from "@angular/core";
 import { HttpClient } from "@angular/common/http";
 import {StorageService} from "./storage.service";
 import {environment} from "../../../environments/environment";
@@ -6,12 +6,8 @@ import {lastValueFrom} from "rxjs";
 
 @Injectable()
 export class AuthService {
-
-  constructor(
-    private http: HttpClient,
-    private storage: StorageService
-  ) {
-  }
+  private http: HttpClient = inject(HttpClient);
+  private storage: StorageService = inject(StorageService);
 
   async signIn(username: string, password: string, rememberMe: boolean = false) {
     try {

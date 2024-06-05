@@ -1,11 +1,10 @@
-import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {TableListComponent} from "../../../../shared/components/table-list/table-list.component";
 import {HEADERS, STATUSES} from "./data.metadata";
 import {environment} from "../../../../../environments/environment";
 import {
   AbstractTableListComponent
 } from "../../../../shared/components/abstract-components/abstract-table-list.component";
-import { HttpClient } from "@angular/common/http";
 import {lastValueFrom} from "rxjs";
 import {AsyncPipe, DatePipe, NgClass, NgOptimizedImage, SlicePipe} from "@angular/common";
 import {RouterLink} from "@angular/router";
@@ -50,13 +49,9 @@ export class ReleasesPageComponent extends AbstractTableListComponent implements
     releaseDate: null,
     status: []
   }
-  defaultImage = '';
 
-  constructor(
-    http: HttpClient,
-    cdr: ChangeDetectorRef,
-  ) {
-    super(http, cdr)
+  constructor() {
+    super();
     this.headers = HEADERS;
     this.url = `${environment.apiUrl}/app/albumreleases/pageable`;
   }

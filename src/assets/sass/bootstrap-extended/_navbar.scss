@@ -299,6 +299,10 @@ nav.navbar.header-navbar {
       }
     }
   }
+
+  .notification {
+    top: 7px !important;
+  }
 }
 @include media-breakpoint-down(sm) {
   .header-navbar .navbar-container ul.navbar-nav{

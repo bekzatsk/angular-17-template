@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, inject, OnDestroy, OnInit} from '@angular/core';
 import {LayoutService} from "../../services/layout.service";
 import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
@@ -24,6 +24,12 @@ import {IconsModule} from "../../modules/icons.module";
   styleUrl: './navbar.component.scss'
 })
 export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
+  private layoutService: LayoutService = inject(LayoutService);
+  private configService: ConfigService = inject(ConfigService);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+  private authService: AuthService = inject(AuthService);
+  protected router: Router = inject(Router);
+
   layoutSub!: Subscription;
   configSub!: Subscription;
   hideSidebar: boolean = true;
@@ -36,14 +42,8 @@ export class NavbarComponent implements OnInit, AfterViewInit, OnDestroy {
     avatar: 'assets/img/sidebar-bg/04.jpg'
   };
 
-  constructor(
-    private layoutService: LayoutService,
-    private configService: ConfigService,
-    private cdr: ChangeDetectorRef,
-    private authService: AuthService,
-    protected router: Router
-  ) {
-    this.layoutSub = layoutService.toggleSidebar$.subscribe(
+  constructor() {
+    this.layoutSub = this.layoutService.toggleSidebar$.subscribe(
       isShow => {
         this.hideSidebar = !isShow;
       });

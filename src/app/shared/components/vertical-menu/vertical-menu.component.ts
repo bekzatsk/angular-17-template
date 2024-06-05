@@ -1,4 +1,4 @@
-import {AfterViewInit, ChangeDetectorRef, Component, HostListener, OnDestroy, OnInit} from '@angular/core';
+import {AfterViewInit, ChangeDetectorRef, Component, HostListener, inject, OnDestroy, OnInit} from '@angular/core';
 import {ConfigService} from "../../services/config.service";
 import {Subscription} from "rxjs";
 import {ITemplateConfig} from "../../interfaces/template-config.metada";
@@ -24,6 +24,10 @@ import {IconsModule} from "../../modules/icons.module";
   styleUrl: './vertical-menu.component.scss'
 })
 export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
+  private configService: ConfigService = inject(ConfigService);
+  private layoutService: LayoutService = inject(LayoutService);
+  private cdr: ChangeDetectorRef = inject(ChangeDetectorRef);
+
   private _configSub!: Subscription;
   private _layoutSub!: Subscription;
   public config!: ITemplateConfig;
@@ -34,13 +38,7 @@ export class VerticalMenuComponent implements OnInit, AfterViewInit, OnDestroy {
   logoUrl = 'assets/img/logo.png';
   resizeTimeout: any;
 
-  constructor(
-    private configService: ConfigService,
-    private layoutService: LayoutService,
-    private cdr: ChangeDetectorRef,
-  ) {
-
-  }
+  constructor() {}
 
   ngOnInit() {
     this.menuItems = ROUTES;

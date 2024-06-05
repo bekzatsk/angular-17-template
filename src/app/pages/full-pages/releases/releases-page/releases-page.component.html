@@ -15,6 +15,7 @@
         [data]="data"
         [pageSize]="pageSize"
         [pageIndex]="pageIndex"
+        [isLoading]="loading"
         (changePage)="pageChange($event)"
         (searchEvent)="searchData($event)"
         (changeFilter)="filterChange($event)"
@@ -41,7 +42,6 @@
               <div class="d-flex">
                 <div class="me-2">
                   @defer {
-
                     @if (!item.imgError) {
                       <img [ngSrc]="imageURL + '/' + item.coverArt + '?size=160'" alt=""
                            [width]="42"
@@ -55,7 +55,7 @@
                         <i-feather name="music" class="size-12"></i-feather>
                       </div>
                     }
-                  } @loading () {
+                  } @placeholder {
                     <div class="no-image">
                       <i-feather name="music" class="size-12"></i-feather>
                     </div>
@@ -109,7 +109,7 @@
 
         <ng-template #filterModalRef>
           <fieldset class="form-group form-lg">
-            <label for="dateAdded">Date Added</label>
+            <label>Date Added</label>
             <app-input-datetime
               [classes]="'form-control-lg'"
               [container]="'body'"
@@ -120,7 +120,7 @@
             ></app-input-datetime>
           </fieldset>
           <fieldset class="form-group form-lg">
-            <label for="releaseDate">Release Date</label>
+            <label>Release Date</label>
             <app-input-datetime
               [classes]="'form-control-lg'"
               [container]="'body'"
@@ -133,6 +133,7 @@
           <fieldset class="form-group form-lg">
             <label>Status</label>
             <ng-select
+              id="status-form"
               class="form-control-lg"
               [items]="statuses"
               [multiple]="true"

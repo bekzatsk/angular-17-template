@@ -457,7 +457,7 @@
   }
 }
 
-@include media-breakpoint-down(lg) {
+@include media-breakpoint-down(xl) {
   .horizontal-layout {
     .navbar.header-navbar {
       &.navbar-horizontal {

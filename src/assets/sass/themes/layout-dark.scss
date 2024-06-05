@@ -239,7 +239,7 @@
   .app-content-overlay {
     background-color: rgba($black, 0.7);
   }
-  @include media-breakpoint-down(lg) {
+  @include media-breakpoint-down(xl) {
     // email app sidebar bg-color for transparent layout
     .email-app-sidebar {
       background-color: rgba($black, 0.9) !important;

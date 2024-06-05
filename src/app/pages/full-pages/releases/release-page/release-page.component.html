@@ -1,0 +1,80 @@
+<section class="container">
+  <div class="main-page">
+    <div class="sidebar-section sticky-top">
+      <h5>General Info</h5>
+      <ul class="list-group">
+        <li class="list-group-item" [ngClass]="{'active': step == 1, 'was-validated': firstStepValid}" (click)="toStep(1)">
+          <i-feather [name]="firstStepValid ? 'check-circle' : 'circle'" class="me-2"></i-feather>
+          Cover Art + Music
+        </li>
+        <li class="list-group-item" [ngClass]="{'active': step == 2, 'was-validated': secondStepForm.valid}" (click)="toStep(2)">
+          <i-feather [name]="secondStepForm.valid ? 'check-circle' : 'circle'" class="me-2"></i-feather>
+          Names + Genres
+        </li>
+        <li class="list-group-item" [ngClass]="{'active': step == 3, 'was-validated': thirdStepForm.valid}" (click)="toStep(3)">
+          <i-feather [name]="thirdStepForm.valid ? 'check-circle' : 'circle'" class="me-2"></i-feather>
+          Distribution Options
+        </li>
+      </ul>
+
+      <h5 class="mt-2">Tracklist</h5>
+<!--      <ul class="list-group">-->
+<!--        @if (tracks.length == 0) {-->
+<!--          <ng-container>-->
+<!--            <span class="text-muted">No tracks added.</span>-->
+<!--          </ng-container>-->
+<!--        }-->
+<!--        <li class="list-group-item"-->
+<!--            *ngFor="let track of tracks.value; let indexTrack = index;"-->
+<!--            [ngClass]="{'active': step == indexTrack + 4}"-->
+<!--            (click)="toStep(indexTrack + 4)"-->
+<!--        >-->
+<!--          <div class="circle-number mr-2">-->
+<!--            <i class="ft-circle" [ngClass]="{'was-validated': tracks.controls[indexTrack].valid}"></i>-->
+<!--            <span [ngClass]="{'was-validated': tracks.controls[indexTrack].valid}">{{indexTrack + 1 | number : '2.0'}}</span>-->
+<!--          </div>-->
+<!--          <span class="text-truncate">{{track.name}}</span>-->
+<!--        </li>-->
+<!--      </ul>-->
+    </div>
+
+    <div class="main-section" [formGroup]="firstStepForm">
+      <div [ngClass]="{'d-block': step == 1, 'd-none': step != 1}">
+        <h3>Cover Art + Music</h3>
+
+        <div class="card">
+          <div class="card-body">
+            <fieldset class="form-group form-lg">
+              <label for="releaseName">Release Name</label>
+              <input type="text" formControlName="releaseName" class="form-control form-control-lg" id="releaseName" placeholder="Release Name">
+            </fieldset>
+
+            <fieldset class="form-group form-lg">
+              <label>Cover Art</label>
+              <small class="text-muted d-block">Must be square, between 3000x3000px and 6000x6000px. Accepted formats are JPG, JPEG and PNG. Image may not include logos, copyrighted images, or any text that does not match the release's metadata.</small>
+              <app-file-uploader
+                id="coverArt"
+                [type]="'image'"
+                [accept]="'image/*'"
+                [title]="'Upload image file'"
+              ></app-file-uploader>
+            </fieldset>
+
+            <fieldset class="form-group form-lg">
+              <label>Track(s)</label>
+              <small class="text-muted d-block">Upload your single, EP, or full album here. Accepted audio files include FLAC, WAV.</small>
+              <app-file-uploader
+                id="tracks"
+                [type]="'audio'"
+                [title]="'Upload audio files'"
+                [accept]="'audio/x-wav,audio/wav,audio/x-flac,audio/flac'"
+                [multiple]="true"
+              ></app-file-uploader>
+            </fieldset>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

@@ -10,9 +10,6 @@ export class ConfigService {
   templateConfSubject = new BehaviorSubject<ITemplateConfig>(this.templateConf);
   templateConf$ = this.templateConfSubject.asObservable();
 
-  constructor() {
-  }
-
   setConfigValue() {
     return this.templateConf = {
       layout: {
